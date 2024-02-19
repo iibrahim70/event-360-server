@@ -7,10 +7,6 @@ const eventItemsSchema = new Schema<IEventItems>(
       type: String,
       required: true,
     },
-    organizer: {
-      type: String,
-      required: true,
-    },
     imageURL: {
       type: String,
       required: true,
