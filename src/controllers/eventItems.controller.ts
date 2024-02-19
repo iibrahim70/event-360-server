@@ -12,7 +12,7 @@ const createEventItems = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Event Items are created successfully',
+    message: 'Event items are created successfully',
     data: result,
   });
 });
@@ -23,13 +23,25 @@ const getAllEventItems = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Event Items are retrieved successfully',
+    message: 'Event items are retrieved successfully',
     data: result,
   });
 });
 
 const updateEventItems = () => {};
-const deleteEventItems = () => {};
+
+const deleteEventItems = catchAsync(async (req, res) => {
+  const itemsId = req.params.id;
+
+  const result = await EventItemsServices.deleteEventItemsFromDB(itemsId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Event items are deleted successfully',
+    data: result,
+  });
+});
 
 export const EventItemsControllers = {
   createEventItems,

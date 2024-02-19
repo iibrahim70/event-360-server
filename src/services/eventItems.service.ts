@@ -12,7 +12,11 @@ const getAllEventItemsFromDB = async () => {
 };
 
 const updateEventItemsFromDB = () => {};
-const deleteEventItemsFromDB = () => {};
+
+const deleteEventItemsFromDB = async (itemsId: string) => {
+  const result = EventItems.findByIdAndDelete(itemsId);
+  return result;
+};
 
 export const EventItemsServices = {
   createEventItemsFromDB,

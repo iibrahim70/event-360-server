@@ -11,7 +11,7 @@ export const globalErrorHandler = (
   next: NextFunction,
 ) => {
   const statusCode = 500;
-  const defaultMessage = 'Something went wrong';
+  const defaultMessage = 'Internal server error!';
 
   let errorMessage = defaultMessage;
   if (error && error?.errors && Array.isArray(error?.errors)) {

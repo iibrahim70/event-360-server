@@ -29,7 +29,19 @@ const getAllRecentEvents = catchAsync(async (req, res) => {
 });
 
 const updateRecentEvents = () => {};
-const deleteRecentEvents = () => {};
+
+const deleteRecentEvents = catchAsync(async (req, res) => {
+  const itemsId = req.params.id;
+
+  const result = await RecentEventsServices.deleteRecentEventsFromDB(itemsId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Recent events are deleted successfully',
+    data: result,
+  });
+});
 
 export const RecentEventsControllers = {
   createRecentEvents,

@@ -12,7 +12,11 @@ const getAllRecentEventsFromDB = async () => {
 };
 
 const updateRecentEventsFromDB = () => {};
-const deleteRecentEventsFromDB = () => {};
+
+const deleteRecentEventsFromDB = async (itemsId: string) => {
+  const result = RecentEvents.findByIdAndDelete(itemsId);
+  return result;
+};
 
 export const RecentEventsServices = {
   createRecentEventsFromDB,
