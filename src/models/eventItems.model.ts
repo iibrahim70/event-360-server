@@ -11,7 +11,7 @@ const eventItemsSchema = new Schema<IEventItems>(
       type: String,
       required: true,
     },
-    imageUrl: {
+    imageURL: {
       type: String,
       required: true,
     },
@@ -19,4 +19,8 @@ const eventItemsSchema = new Schema<IEventItems>(
   { timestamps: true },
 );
 
-export const EventItems = model<IEventItems>('EventItems', eventItemsSchema);
+export const EventItems = model<IEventItems>(
+  'EventItems',
+  eventItemsSchema,
+  'eventItems',
+);

@@ -11,11 +11,16 @@ export const globalErrorHandler = (
   next: NextFunction,
 ) => {
   const statusCode = 500;
-  const message = 'Something went wrong';
+  const defaultMessage = 'Something went wrong';
+
+  let errorMessage = defaultMessage;
+  if (error && error?.errors && Array.isArray(error?.errors)) {
+    errorMessage = error?.errors.map((err: any) => err.message);
+  }
 
   return res.status(statusCode).json({
     success: false,
-    message,
-    error: error,
+    message: errorMessage,
+    error: error?.errors,
   });
 };

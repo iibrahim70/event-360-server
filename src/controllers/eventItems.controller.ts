@@ -3,15 +3,27 @@ import { EventItemsServices } from '../services/eventItems.service';
 import { sendResponse } from '../utils/sendResponse';
 import httpStatus from 'http-status';
 
-const createEventItems = () => {};
+const createEventItems = catchAsync(async (req, res) => {
+  const eventItemsData = req.body;
 
-const getAllEventItems = catchAsync(async (req, res) => {
-  const result = EventItemsServices.getAllEventItemsFromDB();
+  const result =
+    await EventItemsServices.createEventItemsFromDB(eventItemsData);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Recent Events are  retrieved successfully',
+    message: 'Event Items are created successfully',
+    data: result,
+  });
+});
+
+const getAllEventItems = catchAsync(async (req, res) => {
+  const result = await EventItemsServices.getAllEventItemsFromDB();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Event Items are retrieved successfully',
     data: result,
   });
 });
