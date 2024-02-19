@@ -4,10 +4,10 @@ import { sendResponse } from '../utils/sendResponse';
 import httpStatus from 'http-status';
 
 const createRecentEvents = catchAsync(async (req, res) => {
-  const RecentEventsData = req.body;
+  const recentEventsData = req.body;
 
   const result =
-    await RecentEventsServices.createRecentEventsFromDB(RecentEventsData);
+    await RecentEventsServices.createRecentEventsFromDB(recentEventsData);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -28,7 +28,22 @@ const getAllRecentEvents = catchAsync(async (req, res) => {
   });
 });
 
-const updateRecentEvents = () => {};
+const updateRecentEvents = catchAsync(async (req, res) => {
+  const itemsId = req.params.id;
+  const updatedData = req.body;
+
+  const result = await RecentEventsServices.updateRecentEventsFromDB(
+    itemsId,
+    updatedData,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Recent events are updated successfully',
+    data: result,
+  });
+});
 
 const deleteRecentEvents = catchAsync(async (req, res) => {
   const itemsId = req.params.id;

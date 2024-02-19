@@ -11,7 +11,15 @@ const getAllEventItemsFromDB = async () => {
   return result;
 };
 
-const updateEventItemsFromDB = () => {};
+const updateEventItemsFromDB = async (
+  itemsId: string,
+  updatedData: Partial<IEventItems>,
+) => {
+  const result = EventItems.findByIdAndUpdate(itemsId, updatedData, {
+    new: true,
+  });
+  return result;
+};
 
 const deleteEventItemsFromDB = async (itemsId: string) => {
   const result = EventItems.findByIdAndDelete(itemsId);

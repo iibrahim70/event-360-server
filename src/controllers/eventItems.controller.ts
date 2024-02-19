@@ -28,7 +28,22 @@ const getAllEventItems = catchAsync(async (req, res) => {
   });
 });
 
-const updateEventItems = () => {};
+const updateEventItems = catchAsync(async (req, res) => {
+  const itemsId = req.params.id;
+  const updatedData = req.body;
+
+  const result = await EventItemsServices.updateEventItemsFromDB(
+    itemsId,
+    updatedData,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Event items are updated successfully',
+    data: result,
+  });
+});
 
 const deleteEventItems = catchAsync(async (req, res) => {
   const itemsId = req.params.id;

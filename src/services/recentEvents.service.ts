@@ -11,7 +11,15 @@ const getAllRecentEventsFromDB = async () => {
   return result;
 };
 
-const updateRecentEventsFromDB = () => {};
+const updateRecentEventsFromDB = async (
+  itemsId: string,
+  updatedData: Partial<IRecentEvents>,
+) => {
+  const result = RecentEvents.findByIdAndUpdate(itemsId, updatedData, {
+    new: true,
+  });
+  return result;
+};
 
 const deleteRecentEventsFromDB = async (itemsId: string) => {
   const result = RecentEvents.findByIdAndDelete(itemsId);
