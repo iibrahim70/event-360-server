@@ -15,7 +15,7 @@ app.use('/api/v1', router);
 
 // default route
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
+  res.send('Welcome To Event 360');
 });
 
 // global error handler
