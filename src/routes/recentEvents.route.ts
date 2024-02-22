@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import { validateRequest } from '../middlewares/validateRequest';
-import { RecentEventsValidation } from '../validations/recentEvents.validation';
+import { recentEventsValidationSchema } from '../validations/recentEvents.validation';
 import { RecentEventsControllers } from '../controllers/recentEvents.controller';
 
 const router = Router();
 
 router.post(
   '/',
-  validateRequest(RecentEventsValidation.createSchema),
+  validateRequest(recentEventsValidationSchema),
   RecentEventsControllers.createRecentEvents,
 );
 router.get('/', RecentEventsControllers.getAllRecentEvents);
 router.patch(
   '/:id',
-  validateRequest(RecentEventsValidation.updateSchema),
+  validateRequest(recentEventsValidationSchema),
   RecentEventsControllers.updateRecentEvents,
 );
 router.delete('/:id', RecentEventsControllers.deleteRecentEvents);

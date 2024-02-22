@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import { validateRequest } from '../middlewares/validateRequest';
-import { EventItemsValidation } from '../validations/eventItems.validation';
+import { eventItemsValidationSchema } from '../validations/eventItems.validation';
 import { EventItemsControllers } from '../controllers/eventItems.controller';
 
 const router = Router();
 
 router.post(
   '/',
-  validateRequest(EventItemsValidation.createSchema),
+  validateRequest(eventItemsValidationSchema),
   EventItemsControllers.createEventItems,
 );
 router.get('/', EventItemsControllers.getAllEventItems);
 router.patch(
   '/:id',
-  validateRequest(EventItemsValidation.updateSchema),
+  validateRequest(eventItemsValidationSchema),
   EventItemsControllers.updateEventItems,
 );
 router.delete('/:id', EventItemsControllers.deleteEventItems);

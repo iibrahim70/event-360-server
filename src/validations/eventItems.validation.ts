@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const createSchema = z.object({
+export const eventItemsValidationSchema = z.object({
   body: z.object({
     eventName: z.string({
       required_error: 'Event name is required.',
@@ -12,17 +12,3 @@ const createSchema = z.object({
     }),
   }),
 });
-
-const updateSchema = z.object({
-  body: z.object({
-    eventName: z.string({
-      required_error: 'Event name is required.',
-      invalid_type_error: 'Event name must be a string.',
-    }),
-  }),
-});
-
-export const EventItemsValidation = {
-  createSchema,
-  updateSchema,
-};
